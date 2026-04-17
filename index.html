@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="IARSA — Indian Amateur Roller Skating Academy. Visakhapatnam's premier artistic skating academy. Founded by National Champion S. Lakshman Rao."/>
+<meta name="theme-color" content="#0b0516"/>
+<title>IARSA · The Art of Skating</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* =========================================
+   IARSA — THE ART OF SKATING
+   Theatrical · Elegant · Stage-lit
+   ========================================= */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-size:16px}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:#0b0516;
+  color:#f3ebdd;
+  overflow-x:hidden;
+  line-height:1.6;
+  position:relative;
+  min-height:100vh;
+}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,select,textarea{font-family:inherit}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:#0b0516}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#e8c187,#b775a6);border-radius:10px}
+::selection{background:rgba(232,193,135,.4);color:#fff}
+
+/* ── DESIGN TOKENS: Theatrical stage palette ── */
+:root{
+  --bg:       #0b0516;           /* deep plum stage */
+  --bg2:      #140a26;            /* secondary backdrop */
+  --ink:      #f3ebdd;            /* warm cream */
+  --dim:      #cab9ae;            /* antique ivory */
+  --mute:     #8a7a8e;            /* dusk rose-grey */
+  --line:     rgba(243,235,221,.09);
+  --line2:    rgba(243,235,221,.16);
+  --champ:    #f0d9a8;            /* champagne */
+  --rose:     #e8c187;            /* rose-gold */
+  --gold:     #d4a574;            /* antique gold */
+  --amber:    #e8b547;            /* warm amber */
+  --ice:      #a8d8e8;            /* ice blue */
+  --sapph:    #6b8fd6;            /* deep sapphire */
+  --plum:     #b775a6;            /* stage plum */
+  --ruby:     #d55279;            /* performance ruby */
+  --glass:    rgba(243,235,221,.05);
+  --glass2:   rgba(243,235,221,.08);
+  --rad:      18px;
+  --radlg:    28px;
+  --ease:     cubic-bezier(.22,.61,.36,1);
+  --ease2:    cubic-bezier(.65,0,.35,1);
+
+  /* legacy aliases so existing rules still resolve */
+  --cyan:     #a8d8e8;
+  --violet:   #b775a6;
+  --magenta:  #d55279;
+  --electric: #6b8fd6;
+  --green:    #d4a574;
+}
+
+/* ── GLOBAL BG: stage-lit warmth ── */
+body::before{
+  content:'';position:fixed;inset:-20%;z-index:-3;
+  background:
+    radial-gradient(700px 700px at 15% 20%, rgba(232,193,135,.22), transparent 62%),
+    radial-gradient(800px 800px at 85% 10%, rgba(183,117,166,.24), transparent 62%),
+    radial-gradient(900px 900px at 60% 95%, rgba(168,216,232,.14), transparent 62%),
+    radial-gradient(600px 600px at 25% 80%, rgba(213,82,121,.16), transparent 62%);
+  filter:blur(10px);
+  animation:meshShift 26s ease-in-out infinite alternate;
+}
+body::after{
+  content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;
+  /* spotlight beams + subtle bokeh dots instead of a tech grid */
+  background:
+    radial-gradient(ellipse 380px 900px at 20% -10%, rgba(243,235,221,.08), transparent 60%),
+    radial-gradient(ellipse 380px 900px at 80% -10%, rgba(243,235,221,.06), transparent 60%);
+}
+@keyframes meshShift{
+  0%{transform:translate(-2%,-1%) rotate(0deg)}
+  50%{transform:translate(2%,3%) rotate(1deg)}
+  100%{transform:translate(-1%,2%) rotate(-1deg)}
+}
+
+/* ── NOISE OVERLAY ── */
+.noise{
+  position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.045;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* ── ANNOUNCEMENT BAR ── */
+#bar{
+  position:relative;z-index:100;
+  background:linear-gradient(90deg,rgba(232,193,135,.14),rgba(183,117,166,.14),rgba(168,216,232,.12));
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  font-family:'Inter',sans-serif;
+  font-size:12.5px;font-weight:400;letter-spacing:.02em;
+  padding:11px 5%;
+  display:flex;justify-content:center;align-items:center;gap:14px;
+  color:#ece0cf;
+}
+#bar strong{font-weight:600;color:#fff;font-style:italic;font-family:'Fraunces',serif}
+#bar a{
+  color:var(--rose);font-weight:500;
+  display:inline-flex;align-items:center;gap:6px;
+  transition:color .25s var(--ease);
+}
+#bar a:hover{color:#fff}
+.pulse-dot{
+  width:7px;height:7px;border-radius:50%;background:var(--rose);
+  box-shadow:0 0 0 0 rgba(232,193,135,.6);
+  animation:pulse 1.8s ease-out infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(232,193,135,.6)}
+  70%{box-shadow:0 0 0 11px rgba(232,193,135,0)}
+  100%{box-shadow:0 0 0 0 rgba(232,193,135,0)}
+}
+
+/* ── NAV ── */
+#navbar{
+  position:sticky;top:0;z-index:99;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 5%;
+  background:rgba(5,3,15,.55);
+  backdrop-filter:blur(18px) saturate(1.2);
+  -webkit-backdrop-filter:blur(18px) saturate(1.2);
+  border-bottom:1px solid var(--line);
+  transition:all .3s var(--ease);
+}
+#navbar.shrunk{padding:10px 5%;background:rgba(5,3,15,.82)}
+.nav-brand{display:flex;align-items:center;gap:12px}
+.logomark-wrap{
+  position:relative;width:42px;height:42px;border-radius:12px;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));
+  display:grid;place-items:center;
+  box-shadow:0 0 28px rgba(0,229,255,.35), inset 0 0 12px rgba(255,255,255,.15);
+}
+.logomark-wrap::after{
+  content:'';position:absolute;inset:-3px;border-radius:14px;
+  background:conic-gradient(from 0deg,transparent,rgba(0,229,255,.6),transparent 30%);
+  animation:spin 4s linear infinite;z-index:-1;filter:blur(4px);opacity:.7;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.logomark-wrap svg{width:26px;height:26px}
+.brand-name .b1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:17px;font-weight:700;letter-spacing:.02em;color:#fff;line-height:1;
+}
+.brand-name .b2{font-size:10.5px;color:var(--mute);margin-top:3px;letter-spacing:.04em;text-transform:uppercase}
+
+.nav-links{list-style:none;display:flex;gap:6px;align-items:center}
+.nav-links a{
+  position:relative;
+  font-size:13.5px;font-weight:500;color:var(--dim);
+  padding:9px 14px;border-radius:999px;
+  transition:color .25s var(--ease),background .25s var(--ease);
+}
+.nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,.06)}
+.nav-links a.active::after{
+  content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);
+  width:4px;height:4px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);
+}
+.has-drop{position:relative}
+.drop{
+  position:absolute;top:calc(100% + 10px);left:0;min-width:200px;
+  background:rgba(12,9,28,.92);backdrop-filter:blur(20px);
+  border:1px solid var(--line2);border-radius:14px;
+  padding:8px;display:flex;flex-direction:column;gap:2px;
+  opacity:0;visibility:hidden;transform:translateY(-8px);
+  transition:all .25s var(--ease);
+}
+.drop a{font-size:13px;padding:10px 14px;border-radius:10px;color:var(--dim)}
+.drop a:hover{background:rgba(255,255,255,.06);color:#fff}
+.has-drop:hover .drop{opacity:1;visibility:visible;transform:translateY(0)}
+
+.nav-pill{
+  position:relative;overflow:hidden;
+  padding:11px 22px;border-radius:999px;
+  font-size:13px;font-weight:600;color:#05030f;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));
+  box-shadow:0 8px 24px rgba(0,229,255,.25);
+  transition:transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+.nav-pill:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(0,229,255,.45)}
+.nav-pill::before{
+  content:'';position:absolute;top:0;left:-150%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
+  transform:skewX(-24deg);transition:left .6s var(--ease);
+}
+.nav-pill:hover::before{left:150%}
+
+.ham{display:none;width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.06);flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.ham span{display:block;width:16px;height:1.8px;background:#fff;border-radius:2px;transition:all .25s var(--ease)}
+
+.mobile-menu{
+  display:none;position:fixed;top:62px;left:0;right:0;z-index:98;
+  background:rgba(5,3,15,.96);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
+  padding:20px 5%;flex-direction:column;gap:4px;
+  transform:translateY(-10px);opacity:0;visibility:hidden;transition:all .25s var(--ease);
+}
+.mobile-menu.open{transform:translateY(0);opacity:1;visibility:visible}
+.mob-link{padding:13px 16px;border-radius:10px;font-size:15px;color:var(--dim);border-bottom:1px solid var(--line)}
+.mob-link:hover{color:#fff;background:rgba(255,255,255,.05)}
+.mob-enrol{margin-top:10px;padding:14px;text-align:center;border-radius:12px;background:linear-gradient(135deg,var(--cyan),var(--violet));color:#05030f;font-weight:600}
+
+/* ── COMMON SECTION ── */
+.sec{padding:120px 0;position:relative}
+.inner{max-width:1240px;margin:0 auto;padding:0 5%}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;font-weight:500;color:var(--cyan);
+  text-transform:uppercase;letter-spacing:.18em;
+  padding:6px 14px;border-radius:999px;
+  background:rgba(0,229,255,.08);
+  border:1px solid rgba(0,229,255,.22);
+}
+.eyebrow::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+.sec-h2{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(2rem,4.5vw,3.4rem);
+  font-weight:600;letter-spacing:-.025em;line-height:1.06;color:#fff;
+  margin:18px 0 20px;
+}
+.sec-body{font-size:1.02rem;color:var(--dim);max-width:640px;line-height:1.7}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal.d1{transition-delay:.08s}
+.reveal.d2{transition-delay:.16s}
+.reveal.d3{transition-delay:.24s}
+.reveal.d4{transition-delay:.32s}
+
+/* ── HERO ── */
+#hero{
+  position:relative;
+  min-height:92vh;
+  padding:40px 5% 100px;
+  display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center;
+  max-width:1440px;margin:0 auto;
+  overflow:hidden;
+}
+.hero-left{position:relative;z-index:3}
+.hero-chip{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:8px 16px;border-radius:999px;
+  background:rgba(255,255,255,.05);border:1px solid var(--line2);
+  backdrop-filter:blur(10px);
+  font-size:12.5px;color:#cdd2e3;letter-spacing:.02em;
+  margin-bottom:28px;
+}
+.chip-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+.hero-h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(2.6rem,6.2vw,5.2rem);
+  font-weight:500;letter-spacing:-.035em;line-height:1;color:#fff;
+  margin-bottom:28px;
+}
+.hero-h1 .accent{
+  background:linear-gradient(110deg,var(--cyan) 0%,var(--violet) 50%,var(--magenta) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  background-size:200% 200%;
+  animation:flow 6s ease-in-out infinite;
+  font-weight:700;font-style:italic;
+}
+.hero-h1 .stroke{
+  -webkit-text-stroke:1.5px rgba(255,255,255,.4);color:transparent;
+  font-weight:300;
+}
+@keyframes flow{
+  0%,100%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+}
+.hero-p{
+  font-size:1.08rem;color:var(--dim);max-width:540px;line-height:1.75;margin-bottom:38px;
+}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:50px}
+.btn-solid{
+  position:relative;overflow:hidden;
+  padding:15px 30px;border-radius:999px;
+  font-size:14px;font-weight:600;color:#05030f;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));
+  box-shadow:0 10px 34px rgba(0,229,255,.28),inset 0 0 0 1px rgba(255,255,255,.2);
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+  display:inline-flex;align-items:center;gap:9px;
+}
+.btn-solid:hover{transform:translateY(-3px);box-shadow:0 18px 50px rgba(0,229,255,.45)}
+.btn-solid svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.btn-solid:hover svg{transform:translateX(4px)}
+.btn-ghost{
+  padding:15px 28px;border-radius:999px;
+  font-size:14px;font-weight:500;color:#fff;
+  background:rgba(255,255,255,.04);border:1px solid var(--line2);
+  backdrop-filter:blur(10px);
+  transition:all .25s var(--ease);
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-ghost:hover{background:rgba(255,255,255,.08);border-color:var(--cyan);color:var(--cyan)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:620px}
+.hstat{
+  padding:18px 16px;border-radius:14px;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--line);
+  backdrop-filter:blur(8px);
+  transition:all .3s var(--ease);
+}
+.hstat:hover{border-color:rgba(0,229,255,.4);background:rgba(0,229,255,.04);transform:translateY(-4px)}
+.hstat-num{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.85rem;font-weight:600;color:#fff;letter-spacing:-.02em;
+}
+.hstat-num .grad{
+  background:linear-gradient(135deg,var(--cyan),var(--violet));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hstat-label{font-size:11.5px;color:var(--mute);margin-top:4px;text-transform:uppercase;letter-spacing:.08em}
+
+/* Hero Right: WebGL canvas */
+.hero-right{
+  position:relative;height:600px;
+  display:flex;align-items:center;justify-content:center;
+}
+#heroCanvas{
+  position:absolute;inset:0;width:100%;height:100%;
+  z-index:1;
+}
+.hero-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,229,255,.22) 0%,transparent 65%);
+  filter:blur(20px);pointer-events:none;z-index:0;
+  animation:breathe 5s ease-in-out infinite;
+}
+@keyframes breathe{
+  0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.85}
+  50%{transform:translate(-50%,-50%) scale(1.12);opacity:1}
+}
+.fbadge{
+  position:absolute;z-index:4;
+  background:rgba(12,9,28,.7);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--line2);
+  border-radius:14px;
+  padding:11px 15px;
+  display:flex;align-items:center;gap:11px;
+  box-shadow:0 14px 40px rgba(0,0,0,.45);
+  transition:transform .3s var(--ease);
+  animation:floatY 6s ease-in-out infinite;
+}
+.fbadge:hover{transform:translateY(-4px) scale(1.03)}
+@keyframes floatY{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+.fb1{top:10%;right:2%;animation-delay:-1s}
+.fb2{top:46%;left:-4%;animation-delay:-2.5s}
+.fb3{bottom:12%;right:6%;animation-delay:-4s}
+.fb-ic{
+  width:34px;height:34px;border-radius:10px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));
+  box-shadow:0 0 16px rgba(0,229,255,.4);
+}
+.fb-t{font-size:12.5px;font-weight:600;color:#fff;letter-spacing:-.01em}
+.fb-s{font-size:10.5px;color:var(--mute);margin-top:1px}
+
+/* ── CREDIBILITY STRIP ── */
+#strip{
+  padding:26px 5%;
+  background:rgba(255,255,255,.02);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  position:relative;overflow:hidden;
+}
+.strip-inner{
+  max-width:1240px;margin:0 auto;
+  display:flex;align-items:center;gap:30px;flex-wrap:wrap;justify-content:center;
+}
+.strip-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.2em;
+}
+.strip-badges{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
+.sbadge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12.5px;color:var(--dim);font-weight:500;
+  padding:7px 14px;border-radius:999px;
+  background:rgba(255,255,255,.03);border:1px solid var(--line);
+  transition:all .25s var(--ease);
+}
+.sbadge:hover{border-color:rgba(0,229,255,.35);color:#fff}
+
+/* ── RESPONSIVE ── */
+@media (max-width:960px){
+  .nav-links{display:none}
+  .ham{display:flex}
+  .mobile-menu{display:flex}
+  #navbar{padding:10px 5%}
+  #hero{grid-template-columns:1fr;gap:30px;padding-top:30px;min-height:auto}
+  .hero-right{height:420px;order:-1}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .sec{padding:80px 0}
+  .fb1{top:5%;right:2%}.fb2{top:45%;left:2%}.fb3{bottom:6%;right:4%}
+  .fbadge{transform:scale(.9)}
+}
+</style>
+</head>
+<body>
+<div class="noise"></div>
+
+<!-- ANNOUNCEMENT BAR -->
+<div id="bar">
+  <span class="pulse-dot"></span>
+  <span><strong>Enrolments open</strong> for the 2025–26 skating season · Morning &amp; Evening batches</span>
+  <a href="#programs">See Programs →</a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-brand">
+    <div class="logomark-wrap">
+      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="22" cy="16.5" rx="3.8" ry="4.2" fill="white" opacity=".95"/>
+        <path d="M15.5 19.5 Q18 17.5 22 18.5 Q26 17.5 28.5 19.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" opacity=".88"/>
+        <path d="M22 20.5 L21 26" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M21 26 L17.5 32" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <path d="M21 26 L25.5 30" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <ellipse cx="16.5" cy="33.5" rx="4" ry="1.3" fill="white" opacity=".82"/>
+        <ellipse cx="26" cy="31" rx="3.5" ry="1.3" fill="white" opacity=".82" transform="rotate(-18 26 31)"/>
+      </svg>
+    </div>
+    <div class="brand-name">
+      <div class="b1">IARSA</div>
+      <div class="b2">Roller Skating · Est. 2005</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#hero" class="active">Home</a></li>
+    <li class="has-drop">
+      <a href="#about">About</a>
+      <div class="drop">
+        <a href="#about">Our Story</a>
+        <a href="#team">Meet the Team</a>
+        <a href="#values">Why IARSA</a>
+      </div>
+    </li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#stats">Achievements</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#programs" class="nav-pill">Enrol Now</a>
+  <button class="ham" id="hamBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#hero" class="mob-link">Home</a>
+  <a href="#about" class="mob-link">About Us</a>
+  <a href="#programs" class="mob-link">Programs</a>
+  <a href="#gallery" class="mob-link">Gallery</a>
+  <a href="#stats" class="mob-link">Achievements</a>
+  <a href="#contact" class="mob-link">Contact</a>
+  <a href="#programs" class="mob-enrol">Enrol Now →</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-chip">
+      <div class="chip-dot"></div>
+      Visakhapatnam's Premier Skating Academy
+    </div>
+    <h1 class="hero-h1">
+      <span class="stroke">Train Like a</span><br/>
+      <span class="accent">Champion.</span><br/>
+      Skate Into Glory.
+    </h1>
+    <p class="hero-p">
+      Indian Amateur Roller Skating Academy — where elite coaching meets passion. Founded by All India National Champion <strong style="color:#fff">S. Lakshman Rao</strong>, we've shaped medal-winning athletes at every level for over two decades.
+    </p>
+    <div class="hero-actions">
+      <a href="#programs" class="btn-solid">Explore Programs
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#about" class="btn-ghost">Our Story</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-num"><span class="grad" data-count="500" data-suffix="+">0</span></div><div class="hstat-label">Students</div></div>
+      <div class="hstat"><div class="hstat-num"><span class="grad" data-count="100" data-suffix="+">0</span></div><div class="hstat-label">Medals</div></div>
+      <div class="hstat"><div class="hstat-num"><span data-count="20" data-suffix="yrs">0</span></div><div class="hstat-label">Excellence</div></div>
+      <div class="hstat"><div class="hstat-num"><span data-count="3">0</span></div><div class="hstat-label">Levels</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-glow"></div>
+    <canvas id="heroCanvas"></canvas>
+    <div class="fbadge fb1">
+      <div class="fb-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <div><div class="fb-t">National Champion</div><div class="fb-s">All India · 2005</div></div>
+    </div>
+    <div class="fbadge fb2">
+      <div class="fb-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M7 4h10v7a5 5 0 0 1-10 0V4z"/></svg></div>
+      <div><div class="fb-t">100+ Medals</div><div class="fb-s">District to National</div></div>
+    </div>
+    <div class="fbadge fb3">
+      <div class="fb-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></div>
+      <div><div class="fb-t">Shivaji Park</div><div class="fb-s">MVP Colony, Vizag</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div id="strip">
+  <div class="strip-inner">
+    <div class="strip-label">&lt;&gt; Recognised by</div>
+    <div class="strip-badges">
+      <div class="sbadge">Andhra Pradesh Sports Authority</div>
+      <div class="sbadge">All India Roller Skating Federation</div>
+      <div class="sbadge">District Sports Council, Vizag</div>
+      <div class="sbadge">National Sports Federation</div>
+    </div>
+  </div>
+</div>
+<style>
+/* ── ABOUT ── */
+#about .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:70px;align-items:start}
+.founder-block{
+  display:flex;align-items:center;gap:14px;
+  padding:18px 20px;border-radius:16px;
+  background:linear-gradient(135deg,rgba(0,229,255,.08),rgba(123,92,255,.08));
+  border:1px solid var(--line2);
+  backdrop-filter:blur(8px);
+  margin-bottom:32px;
+}
+.founder-av{
+  width:48px;height:48px;border-radius:12px;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));
+  display:grid;place-items:center;flex-shrink:0;
+  box-shadow:0 0 22px rgba(0,229,255,.35);
+}
+.founder-name{font-size:15px;font-weight:600;color:#fff}
+.founder-role{font-size:12px;color:var(--mute);margin-top:2px}
+.founder-badge{
+  margin-left:auto;
+  padding:5px 11px;border-radius:999px;font-size:10.5px;font-weight:600;
+  background:rgba(255,209,102,.12);border:1px solid rgba(255,209,102,.35);
+  color:var(--gold);display:inline-flex;align-items:center;gap:5px;
+}
+.info-list{display:flex;flex-direction:column;gap:10px}
+.irow{
+  display:flex;align-items:center;gap:14px;
+  padding:15px 18px;border-radius:14px;
+  background:rgba(255,255,255,.025);border:1px solid var(--line);
+  transition:all .3s var(--ease);
+}
+.irow:hover{background:rgba(0,229,255,.04);border-color:rgba(0,229,255,.3);transform:translateX(4px)}
+.irow-ic{
+  width:40px;height:40px;border-radius:10px;display:grid;place-items:center;flex-shrink:0;
+  background:rgba(0,229,255,.1);color:var(--cyan);
+}
+.irow-text h5{font-size:14px;font-weight:600;color:#fff;margin-bottom:3px}
+.irow-text p{font-size:12.5px;color:var(--dim);line-height:1.5}
+.irow-arr{color:var(--mute);font-size:22px;transition:transform .3s var(--ease),color .3s var(--ease)}
+.irow:hover .irow-arr{color:var(--cyan);transform:translateX(3px)}
+
+.about-mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:14px;position:relative}
+.mcard{
+  position:relative;overflow:hidden;
+  padding:28px;border-radius:20px;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--line2);
+  backdrop-filter:blur(10px);
+  transition:all .4s var(--ease);
+  min-height:180px;
+}
+.mcard.tall{grid-row:1/3;min-height:370px;background:linear-gradient(160deg,rgba(0,229,255,.15),rgba(123,92,255,.12))}
+.mcard.mc2{background:linear-gradient(135deg,rgba(60,240,184,.12),rgba(0,229,255,.08))}
+.mcard.mc3{background:linear-gradient(135deg,rgba(255,209,102,.12),rgba(255,61,154,.08))}
+.mcard::before{
+  content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:radial-gradient(circle at center,rgba(255,255,255,.1) 0%,transparent 50%);
+  opacity:0;transition:opacity .4s var(--ease);pointer-events:none;
+}
+.mcard:hover::before{opacity:1}
+.mcard:hover{transform:translateY(-6px);border-color:rgba(0,229,255,.4)}
+.mcard-inner{position:relative;z-index:2;display:flex;flex-direction:column;gap:14px;height:100%;justify-content:flex-end}
+.mcard-icon{width:64px;height:64px;border-radius:16px;background:rgba(255,255,255,.08);display:grid;place-items:center}
+.mcard-label{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:600;color:#fff;letter-spacing:-.02em}
+.mcard-sub{font-size:12px;color:var(--dim);letter-spacing:.04em}
+
+/* ── PROGRAMS ── */
+#programs{position:relative}
+.programs-header,.gallery-header,.team-header,.values-header,.stats-header,.test-header{text-align:center;max-width:720px;margin:0 auto 60px}
+.programs-header .sec-body,.gallery-header .sec-body,.team-header .sec-body,.values-header .sec-body,.stats-header .sec-body,.test-header .sec-body{margin:0 auto}
+.prog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pcard{
+  position:relative;overflow:hidden;
+  background:rgba(12,9,28,.5);
+  border:1px solid var(--line2);
+  border-radius:24px;
+  padding:32px 28px;
+  backdrop-filter:blur(14px);
+  transition:all .4s var(--ease);
+}
+.pcard::before{
+  content:'';position:absolute;inset:0;border-radius:24px;padding:1px;
+  background:linear-gradient(135deg,transparent,rgba(0,229,255,.4),transparent);
+  -webkit-mask:linear-gradient(#000,#000) content-box,linear-gradient(#000,#000);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  opacity:0;transition:opacity .4s var(--ease);pointer-events:none;
+}
+.pcard:hover::before{opacity:1}
+.pcard:hover{transform:translateY(-8px);background:rgba(12,9,28,.75)}
+.pcard.featured{background:linear-gradient(160deg,rgba(0,229,255,.12),rgba(123,92,255,.1));border-color:rgba(0,229,255,.3)}
+.pcard-badge{
+  position:absolute;top:18px;right:18px;
+  padding:4px 11px;border-radius:999px;font-size:10px;font-weight:600;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));color:#05030f;
+  text-transform:uppercase;letter-spacing:.08em;
+}
+.pcard-accent{height:3px;width:48px;border-radius:2px;margin-bottom:22px}
+.ac-green{background:linear-gradient(90deg,var(--green),var(--cyan))}
+.ac-amber{background:linear-gradient(90deg,var(--gold),var(--magenta))}
+.ac-blue{background:linear-gradient(90deg,var(--electric),var(--violet))}
+.pcard-icon{width:56px;height:56px;border-radius:14px;background:rgba(255,255,255,.06);display:grid;place-items:center;margin-bottom:18px}
+.pcard-name{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:600;color:#fff;letter-spacing:-.02em;margin-bottom:10px}
+.pcard-tagline{font-size:13.5px;color:var(--dim);line-height:1.6;margin-bottom:20px}
+.pcard-features{list-style:none;margin-bottom:22px}
+.pcard-features li{
+  padding:7px 0;font-size:13px;color:#cdd2e3;
+  display:flex;align-items:center;gap:10px;
+  border-bottom:1px dashed rgba(255,255,255,.06);
+}
+.pcard-features li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.pcard-divider{height:1px;background:linear-gradient(90deg,transparent,var(--line2),transparent);margin:4px 0 20px}
+.pcard-sched-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mute);text-transform:uppercase;letter-spacing:.18em;margin-bottom:10px}
+.srow{display:flex;justify-content:space-between;padding:7px 0;font-size:12.5px;border-bottom:1px solid rgba(255,255,255,.04)}
+.srow-day{color:var(--dim);font-weight:500}
+.srow-time{color:#fff;font-family:'JetBrains Mono',monospace;font-size:11.5px}
+.srow-time.holiday{color:var(--magenta)}
+.pcard-cta{
+  width:100%;padding:13px;border-radius:12px;margin-top:20px;
+  font-size:13px;font-weight:600;
+  background:rgba(255,255,255,.05);color:#fff;
+  border:1px solid var(--line2);
+  transition:all .25s var(--ease);
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.pcard-cta:hover{background:linear-gradient(135deg,var(--cyan),var(--violet));color:#05030f;border-color:transparent;box-shadow:0 8px 24px rgba(0,229,255,.3)}
+
+/* ── GALLERY ── */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:220px;gap:16px}
+.gcell{
+  position:relative;overflow:hidden;border-radius:20px;
+  border:1px solid var(--line2);
+  transition:all .4s var(--ease);cursor:pointer;
+  background:linear-gradient(135deg,rgba(0,229,255,.15),rgba(123,92,255,.2));
+}
+.gcell.gc1{grid-row:span 2;background:linear-gradient(135deg,rgba(79,124,255,.25),rgba(0,229,255,.15))}
+.gcell.gc3{grid-row:span 2;background:linear-gradient(135deg,rgba(255,61,154,.2),rgba(123,92,255,.2))}
+.gcell.gc4{background:linear-gradient(135deg,rgba(255,209,102,.25),rgba(255,61,154,.15))}
+.gcell.gc5{background:linear-gradient(135deg,rgba(60,240,184,.2),rgba(0,229,255,.15))}
+.gcell.gc6{background:linear-gradient(135deg,rgba(123,92,255,.25),rgba(79,124,255,.2))}
+.gcell::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.7) 100%);
+  z-index:1;
+}
+.gcell::after{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);
+  background-size:24px 24px;
+  opacity:.4;
+}
+.gcell:hover{transform:translateY(-6px) scale(1.02);border-color:rgba(0,229,255,.5);box-shadow:0 20px 50px rgba(0,229,255,.18)}
+.gcell-content{position:absolute;bottom:20px;left:22px;right:22px;z-index:3}
+.gcell-emoji{margin-bottom:14px;opacity:.9}
+.gcell-title{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;color:#fff;letter-spacing:-.015em}
+.gcell-sub{font-size:11.5px;color:var(--dim);margin-top:3px;letter-spacing:.04em}
+.gcell-overlay{
+  position:absolute;top:18px;right:18px;z-index:3;
+  width:36px;height:36px;border-radius:10px;
+  background:rgba(255,255,255,.1);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.2);
+  display:grid;place-items:center;
+  opacity:0;transition:all .3s var(--ease);
+}
+.gcell:hover .gcell-overlay{opacity:1;transform:translateY(0)}
+.gallery-cta{text-align:center;margin-top:48px}
+.gallery-cta a{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:13px 26px;border-radius:999px;
+  background:rgba(255,255,255,.05);border:1px solid var(--line2);
+  color:#fff;font-size:13.5px;font-weight:500;
+  transition:all .25s var(--ease);
+}
+.gallery-cta a:hover{background:linear-gradient(135deg,rgba(255,61,154,.2),rgba(123,92,255,.2));border-color:var(--magenta);color:#fff}
+
+@media (max-width:900px){
+  #about .about-grid{grid-template-columns:1fr;gap:40px}
+  .about-mosaic{grid-template-columns:1fr 1fr}
+  .prog-grid{grid-template-columns:1fr;gap:18px}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .gcell.gc1,.gcell.gc3{grid-row:span 1}
+}
+</style>
+
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <div class="inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="eyebrow reveal">Our Story</span>
+        <h2 class="sec-h2 reveal d1">Built by a champion,<br/>for <span style="background:linear-gradient(110deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700">future champions.</span></h2>
+        <p class="sec-body reveal d2" style="margin-bottom:28px">
+          Indian Amateur Roller Skating Academy was born from a simple belief — world-class training shouldn't be limited to a select few. Founded by <strong style="color:#fff">S. Lakshman Rao</strong>, who captured the All India National Roller Skating Championship in 2005, IARSA has been an engine of athletic excellence across Andhra Pradesh for over two decades.
+        </p>
+        <div class="founder-block reveal d3">
+          <div class="founder-av"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M7 4h10v7a5 5 0 0 1-10 0V4z"/></svg></div>
+          <div>
+            <div class="founder-name">S. Lakshman Rao</div>
+            <div class="founder-role">Founder &amp; Secretary, IARSA</div>
+          </div>
+          <div class="founder-badge">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Champion 2005
+          </div>
+        </div>
+        <div class="info-list reveal d4">
+          <div class="irow">
+            <div class="irow-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+            <div class="irow-text"><h5>Smt. T. Saraswathi Devi</h5><p>President, IARSA — Leading with vision and unwavering commitment</p></div>
+            <div class="irow-arr">›</div>
+          </div>
+          <div class="irow">
+            <div class="irow-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></div>
+            <div class="irow-text"><h5>Our Skating Rink</h5><p>Shivaji Park, MVP Colony, Visakhapatnam, Andhra Pradesh</p></div>
+            <div class="irow-arr">›</div>
+          </div>
+          <div class="irow">
+            <div class="irow-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg></div>
+            <div class="irow-text"><h5>Our Mission</h5><p>Ethics, safety and excellence — from first roll to the national podium</p></div>
+            <div class="irow-arr">›</div>
+          </div>
+          <div class="irow">
+            <div class="irow-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <div class="irow-text"><h5>Our Vision</h5><p>To put Visakhapatnam on India's skating map through medal-ready athletes</p></div>
+            <div class="irow-arr">›</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-mosaic reveal d1">
+        <div class="mcard tall mc1">
+          <div class="mcard-inner">
+            <div class="mcard-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/><path d="M12 2a15.3 15.3 0 0 0-4 10 15.3 15.3 0 0 0 4 10"/></svg></div>
+            <div class="mcard-label">Artistic Skating</div>
+            <div class="mcard-sub">Precision · Expression · Form</div>
+          </div>
+        </div>
+        <div class="mcard mc2">
+          <div class="mcard-inner">
+            <div class="mcard-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="#3cf0b8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            <div class="mcard-label">Speed Training</div>
+            <div class="mcard-sub">Sprint · Endurance</div>
+          </div>
+        </div>
+        <div class="mcard mc3">
+          <div class="mcard-inner">
+            <div class="mcard-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="#ffd166"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <div class="mcard-label">Championship</div>
+            <div class="mcard-sub">District to International</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs" class="sec">
+  <div class="inner">
+    <div class="programs-header reveal">
+      <span class="eyebrow">Training Programs</span>
+      <h2 class="sec-h2">Find your perfect class.</h2>
+      <p class="sec-body">Six days a week, morning and evening sessions. Three structured levels designed to take you from first-timer to competition-ready, at Shivaji Park, Visakhapatnam.</p>
+    </div>
+    <div class="prog-grid">
+      <div class="pcard reveal d1">
+        <div class="pcard-accent ac-green"></div>
+        <div class="pcard-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#3cf0b8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg></div>
+        <div class="pcard-name">Beginners</div>
+        <div class="pcard-tagline">New to skating? Start here. Learn balance, basic strides, and falls safely on our maintained rink.</div>
+        <ul class="pcard-features">
+          <li>Balance &amp; foundational technique</li>
+          <li>Safety gear guidance</li>
+          <li>Supportive group environment</li>
+          <li>Progress tracked by certified coaches</li>
+        </ul>
+        <div class="pcard-divider"></div>
+        <div class="pcard-sched-label">// Weekly Schedule</div>
+        <div class="srow"><span class="srow-day">Monday</span><span class="srow-time holiday">Holiday</span></div>
+        <div class="srow"><span class="srow-day">Tue – Sun</span><span class="srow-time">5:00 – 6:30 AM &amp; PM</span></div>
+        <div class="srow"><span class="srow-day">Thursday</span><span class="srow-time holiday">Holiday</span></div>
+        <button class="pcard-cta">Join Beginners Class →</button>
+      </div>
+
+      <div class="pcard featured reveal d2">
+        <div class="pcard-badge">★ Most Popular</div>
+        <div class="pcard-accent ac-amber"></div>
+        <div class="pcard-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffd166" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+        <div class="pcard-name">Juniors Artistic</div>
+        <div class="pcard-tagline">Intermediate training focused on artistic expression, choreography, and competition readiness.</div>
+        <ul class="pcard-features">
+          <li>Artistic &amp; freestyle techniques</li>
+          <li>Choreographed routines</li>
+          <li>District competition preparation</li>
+          <li>Strength &amp; flexibility conditioning</li>
+        </ul>
+        <div class="pcard-divider"></div>
+        <div class="pcard-sched-label">// Weekly Schedule</div>
+        <div class="srow"><span class="srow-day">Mon – Fri</span><span class="srow-time">4:00 – 5:30 PM</span></div>
+        <div class="srow"><span class="srow-day">Saturday</span><span class="srow-time">5–8:30 AM · 4–5:30 PM</span></div>
+        <div class="srow"><span class="srow-day">Sunday</span><span class="srow-time">5–8:30 AM · 4–5:30 PM</span></div>
+        <button class="pcard-cta">Join Juniors Class →</button>
+      </div>
+
+      <div class="pcard reveal d3">
+        <div class="pcard-accent ac-blue"></div>
+        <div class="pcard-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#4f7cff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="pcard-name">Senior Artistic</div>
+        <div class="pcard-tagline">Advanced training for serious athletes targeting state, national and international competitions.</div>
+        <ul class="pcard-features">
+          <li>Advanced artistic techniques</li>
+          <li>National competition strategy</li>
+          <li>Elite physical conditioning</li>
+          <li>Direct coaching by national champion</li>
+        </ul>
+        <div class="pcard-divider"></div>
+        <div class="pcard-sched-label">// Weekly Schedule</div>
+        <div class="srow"><span class="srow-day">Mon – Fri</span><span class="srow-time">6:00 – 8:30 PM</span></div>
+        <div class="srow"><span class="srow-day">Saturday</span><span class="srow-time">5–8:30 AM · 6–8:30 PM</span></div>
+        <div class="srow"><span class="srow-day">Sunday</span><span class="srow-time">5–8:30 AM · 6–8:30 PM</span></div>
+        <button class="pcard-cta">Join Senior Class →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="sec">
+  <div class="inner">
+    <div class="gallery-header reveal">
+      <span class="eyebrow">Life at IARSA</span>
+      <h2 class="sec-h2">The rink, the team,<br/>the champions.</h2>
+      <p class="sec-body">Moments from training sessions, competitions, and celebrations that define the IARSA spirit.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gcell gc1 reveal">
+        <div class="gcell-content">
+          <div class="gcell-emoji"><svg width="42" height="42" viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="34" rx="18" ry="7" stroke="rgba(255,255,255,.6)" stroke-width="1.5"/><circle cx="24" cy="14" r="6" fill="rgba(255,255,255,.95)"/><path d="M18 20 Q24 17 30 20 L29 30 Q24 33 19 30 Z" fill="rgba(255,255,255,.9)"/></svg></div>
+          <div class="gcell-title">Shivaji Park Rink</div>
+          <div class="gcell-sub">MVP Colony, Visakhapatnam</div>
+        </div>
+        <div class="gcell-overlay"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+      <div class="gcell gc2 reveal d1">
+        <div class="gcell-content">
+          <div class="gcell-emoji"><svg width="42" height="42" viewBox="0 0 48 48" fill="none"><path d="M16 8h16v14a8 8 0 0 1-16 0V8z" fill="rgba(255,255,255,.95)"/></svg></div>
+          <div class="gcell-title">National Championship</div>
+          <div class="gcell-sub">All India 2005</div>
+        </div>
+        <div class="gcell-overlay"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+      <div class="gcell gc3 reveal d2">
+        <div class="gcell-content">
+          <div class="gcell-emoji"><svg width="42" height="42" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="12" r="7" fill="rgba(255,255,255,.95)"/><polygon points="24 4 25.5 7.5 29.3 7.8 26.6 10.2 27.4 14 24 12 20.6 14 21.4 10.2 18.7 7.8 22.5 7.5" fill="rgba(255,215,0,.9)"/></svg></div>
+          <div class="gcell-title">Artistic Showcase</div>
+          <div class="gcell-sub">Annual performance</div>
+        </div>
+        <div class="gcell-overlay"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+      <div class="gcell gc4 reveal d1">
+        <div class="gcell-content">
+          <div class="gcell-emoji"><svg width="36" height="36" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="20" r="13" fill="rgba(255,215,0,.95)"/><polygon points="24 12 26.4 17.7 32.5 18.2 28 22.1 29.5 28.1 24 25 18.5 28.1 20 22.1 15.5 18.2 21.6 17.7" fill="rgba(255,255,255,.95)"/></svg></div>
+          <div class="gcell-title">Gold Medals</div>
+          <div class="gcell-sub">State &amp; National</div>
+        </div>
+        <div class="gcell-overlay"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+      <div class="gcell gc5 reveal d2">
+        <div class="gcell-content">
+          <div class="gcell-emoji"><svg width="36" height="36" viewBox="0 0 48 48" fill="none"><polygon points="24 6 27.4 15.1 37.1 15.8 29.9 21.9 32.4 31.4 24 26.2 15.6 31.4 18.1 21.9 10.9 15.8 20.6 15.1" fill="rgba(255,255,255,.95)"/></svg></div>
+          <div class="gcell-title">Rising Stars</div>
+          <div class="gcell-sub">Junior champions</div>
+        </div>
+        <div class="gcell-overlay"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      </div>
+      <div class="gcell gc6 reveal d3">
+        <div class="gcell-content">
+          <div class="gcell-emoji"><svg width="42" height="42" viewBox="0 0 48 48" fill="none"><rect x="4" y="12" width="30" height="24" rx="4" fill="rgba(255,255,255,.25)" stroke="rgba(255,255,255,.6)" stroke-width="1.5"/><polygon points="34 16 44 24 34 32" fill="rgba(255,255,255,.8)"/><polygon points="16 20 16 28 24 24" fill="rgba(255,255,255,.95)"/></svg></div>
+          <div class="gcell-title">Watch Us Skate</div>
+          <div class="gcell-sub">Videos on YouTube</div>
+        </div>
+        <div class="gcell-overlay"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+      </div>
+    </div>
+    <div class="gallery-cta reveal">
+      <a href="https://www.youtube.com/channel/UCoKNzWrww4202TyFZu5ZarA" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Watch our videos on YouTube
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ── TEAM ── */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.tcard{
+  position:relative;padding:32px 22px 26px;border-radius:20px;
+  background:rgba(12,9,28,.55);border:1px solid var(--line2);
+  backdrop-filter:blur(12px);text-align:center;
+  transition:all .35s var(--ease);overflow:hidden;
+}
+.tcard::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--cyan),var(--violet),var(--magenta));
+  opacity:0;transition:opacity .3s var(--ease);
+}
+.tcard:hover{transform:translateY(-8px);border-color:rgba(0,229,255,.35);background:rgba(12,9,28,.85)}
+.tcard:hover::after{opacity:1}
+.tcard-av{
+  width:82px;height:82px;border-radius:50%;margin:0 auto 18px;
+  display:grid;place-items:center;
+  font-family:'Space Grotesk',sans-serif;font-size:1.65rem;font-weight:700;color:#fff;letter-spacing:-.02em;
+  position:relative;
+}
+.tcard-av::before{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  background:conic-gradient(from 0deg,var(--cyan),var(--violet),var(--magenta),var(--cyan));
+  z-index:-1;animation:spin 6s linear infinite;
+}
+.av-purple{background:linear-gradient(135deg,#7b5cff,#ff3d9a)}
+.av-blue{background:linear-gradient(135deg,#4f7cff,#00e5ff)}
+.av-green{background:linear-gradient(135deg,#3cf0b8,#00e5ff)}
+.av-orange{background:linear-gradient(135deg,#ffd166,#ff3d9a)}
+.tcard-name{font-size:1rem;font-weight:600;color:#fff;letter-spacing:-.01em;margin-bottom:4px}
+.tcard-role{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--cyan);text-transform:uppercase;letter-spacing:.15em;margin-bottom:12px}
+.tcard-desc{font-size:12.5px;color:var(--dim);line-height:1.6}
+
+/* ── VALUES ── */
+.values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.vcard{
+  padding:28px 24px;border-radius:20px;
+  background:rgba(255,255,255,.02);border:1px solid var(--line);
+  backdrop-filter:blur(10px);
+  transition:all .35s var(--ease);
+  position:relative;overflow:hidden;
+}
+.vcard:hover{transform:translateY(-6px);background:rgba(255,255,255,.04);border-color:rgba(0,229,255,.3)}
+.vcard-icon{
+  width:52px;height:52px;border-radius:14px;
+  display:grid;place-items:center;margin-bottom:18px;
+  border:1px solid var(--line2);
+}
+.vi-blue{background:rgba(79,124,255,.12)}
+.vi-teal{background:rgba(60,240,184,.12)}
+.vi-amber{background:rgba(255,209,102,.12)}
+.vi-purple{background:rgba(123,92,255,.12)}
+.vcard h4{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;color:#fff;letter-spacing:-.015em;margin-bottom:10px}
+.vcard p{font-size:13px;color:var(--dim);line-height:1.65}
+
+/* ── STATS ── */
+.stats-numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:60px}
+.snum-card{
+  position:relative;padding:36px 24px;border-radius:22px;text-align:center;
+  background:rgba(12,9,28,.5);border:1px solid var(--line2);
+  backdrop-filter:blur(12px);overflow:hidden;
+  transition:all .4s var(--ease);
+}
+.snum-card::before{
+  content:'';position:absolute;top:-60%;left:-20%;width:140%;height:140%;
+  background:radial-gradient(ellipse at center,rgba(0,229,255,.15) 0%,transparent 60%);
+  animation:orbit 10s linear infinite;opacity:.6;
+}
+@keyframes orbit{0%{transform:rotate(0deg) translateX(10px)}100%{transform:rotate(360deg) translateX(10px)}}
+.snum-card:hover{transform:translateY(-6px);border-color:rgba(0,229,255,.4)}
+.snum-num{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(2.6rem,5vw,3.6rem);font-weight:600;letter-spacing:-.03em;
+  display:block;margin-bottom:8px;position:relative;z-index:2;
+}
+.snum-num.gold{background:linear-gradient(135deg,#ffd166,#ff8a3d);-webkit-background-clip:text;background-clip:text;color:transparent}
+.snum-num.blue{background:linear-gradient(135deg,#00e5ff,#4f7cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.snum-num.green{background:linear-gradient(135deg,#3cf0b8,#00e5ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.snum-num.purple{background:linear-gradient(135deg,#7b5cff,#ff3d9a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.snum-label{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;position:relative;z-index:2}
+
+.ach-scroll{overflow:hidden;mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent)}
+.ach-track{display:flex;gap:14px;animation:marquee 40s linear infinite;width:max-content}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.achip{
+  display:flex;align-items:center;gap:12px;
+  padding:13px 20px;border-radius:14px;
+  background:rgba(12,9,28,.55);border:1px solid var(--line2);
+  backdrop-filter:blur(10px);flex-shrink:0;
+  min-width:260px;
+}
+.achip-medal{
+  width:34px;height:34px;border-radius:9px;display:grid;place-items:center;flex-shrink:0;
+}
+.achip-medal.gold{background:linear-gradient(135deg,#ffd166,#ff8a3d)}
+.achip-medal.blue{background:linear-gradient(135deg,#00e5ff,#4f7cff)}
+.achip-medal.silver{background:linear-gradient(135deg,#c9cdd9,#6d7390)}
+.achip-medal.bronze{background:linear-gradient(135deg,#cd7f32,#8b5a2b)}
+.achip-medal.green{background:linear-gradient(135deg,#3cf0b8,#00e5ff)}
+.achip-medal.purple{background:linear-gradient(135deg,#7b5cff,#ff3d9a)}
+.achip-text{font-size:12.5px;font-weight:600;color:#fff;letter-spacing:-.01em}
+.achip-sub{font-size:10.5px;color:var(--mute);margin-top:2px}
+
+/* ── TESTIMONIALS ── */
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.testcard{
+  position:relative;padding:36px 28px 28px;border-radius:22px;
+  background:rgba(12,9,28,.55);border:1px solid var(--line2);
+  backdrop-filter:blur(12px);overflow:hidden;
+  transition:all .4s var(--ease);
+}
+.testcard:hover{transform:translateY(-6px);border-color:rgba(0,229,255,.3);background:rgba(12,9,28,.8)}
+.test-quote-mark{
+  position:absolute;top:12px;right:20px;
+  font-family:'Space Grotesk',sans-serif;font-size:5rem;line-height:1;font-weight:700;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent;
+  opacity:.5;
+}
+.test-stars{color:var(--gold);font-size:14px;margin-bottom:14px;letter-spacing:3px}
+.test-quote{font-size:14px;color:#d8dcee;line-height:1.7;margin-bottom:22px;position:relative;z-index:2}
+.test-author{display:flex;align-items:center;gap:12px;padding-top:18px;border-top:1px solid var(--line)}
+.test-av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center}
+.test-name{font-size:13.5px;font-weight:600;color:#fff}
+.test-desc{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+
+@media (max-width:900px){
+  .team-grid,.values-grid,.stats-numbers,.test-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:600px){
+  .team-grid,.values-grid,.stats-numbers,.test-grid{grid-template-columns:1fr}
+}
+</style>
+
+<!-- TEAM -->
+<section id="team" class="sec">
+  <div class="inner">
+    <div class="team-header reveal">
+      <span class="eyebrow">The People Behind IARSA</span>
+      <h2 class="sec-h2">Leadership &amp; Coaches</h2>
+      <p class="sec-body">Dedicated professionals who bring real competitive experience and a genuine passion for the sport to every training session.</p>
+    </div>
+    <div class="team-grid">
+      <div class="tcard reveal d1"><div class="tcard-av av-purple">TS</div><div class="tcard-name">Smt. T. Saraswathi Devi</div><div class="tcard-role">President</div><div class="tcard-desc">Visionary leader guiding IARSA's growth and community outreach across Andhra Pradesh.</div></div>
+      <div class="tcard reveal d2"><div class="tcard-av av-blue">SL</div><div class="tcard-name">S. Lakshman Rao</div><div class="tcard-role">Founder &amp; Secretary</div><div class="tcard-desc">All India National Champion 2005. The heart and soul of IARSA — coaching champions since day one.</div></div>
+      <div class="tcard reveal d3"><div class="tcard-av av-green">Si</div><div class="tcard-name">Simhadri</div><div class="tcard-role">Head Coach</div><div class="tcard-desc">Technical expert and motivator. Reach him for enrolment enquiries at +91 99596 46165.</div></div>
+      <div class="tcard reveal d4"><div class="tcard-av av-orange">Sr</div><div class="tcard-name">Srinivas</div><div class="tcard-role">Senior Coach</div><div class="tcard-desc">Specialist in artistic form and competition preparation. Contact: +91 97049 94994.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values" class="sec">
+  <div class="inner">
+    <div class="values-header reveal">
+      <span class="eyebrow">Why Choose IARSA</span>
+      <h2 class="sec-h2">Everything you need<br/>to reach the top.</h2>
+      <p class="sec-body">Four pillars that make IARSA the finest place to learn, grow, and compete as a skater in India.</p>
+    </div>
+    <div class="values-grid">
+      <div class="vcard reveal d1">
+        <div class="vcard-icon vi-blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8cc8ff" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <h4>Champion-Level Coaching</h4>
+        <p>Every instructor is a certified professional with real competitive medals. We don't teach from books — we teach from podium experience.</p>
+      </div>
+      <div class="vcard reveal d2">
+        <div class="vcard-icon vi-teal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64e6dc" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h4>Safety First, Always</h4>
+        <p>Our rink at Shivaji Park is maintained to the highest standards. Every session is structured for maximum progress with zero compromise on safety.</p>
+      </div>
+      <div class="vcard reveal d3">
+        <div class="vcard-icon vi-amber"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffd264" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        <h4>Clear Progression Path</h4>
+        <p>Beginners → Juniors → Senior Artistic. A proven pathway designed to take any motivated student from their first roll to the national stage.</p>
+      </div>
+      <div class="vcard reveal d4">
+        <div class="vcard-icon vi-purple"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d296ff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h4>Community &amp; Character</h4>
+        <p>IARSA is more than an academy — it's a family built on discipline, sportsmanship, mutual respect, and a shared love of the sport.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats" class="sec">
+  <div class="inner">
+    <div class="stats-header reveal">
+      <span class="eyebrow">Hall of Champions</span>
+      <h2 class="sec-h2">A proven record<br/>of excellence.</h2>
+      <p class="sec-body">From District meets to All India Championships — our athletes have carried the flag of Visakhapatnam and India with honour.</p>
+    </div>
+    <div class="stats-numbers">
+      <div class="snum-card reveal d1"><span class="snum-num gold" data-count="500" data-suffix="+">0</span><div class="snum-label">Athletes Trained</div></div>
+      <div class="snum-card reveal d2"><span class="snum-num blue" data-count="100" data-suffix="+">0</span><div class="snum-label">Medals Won</div></div>
+      <div class="snum-card reveal d3"><span class="snum-num green" data-count="20" data-suffix="">0</span><div class="snum-label">Years of Excellence</div></div>
+      <div class="snum-card reveal d4"><span class="snum-num purple" data-count="3">0</span><div class="snum-label">Training Levels</div></div>
+    </div>
+  </div>
+  <div class="ach-scroll">
+    <div class="ach-track">
+      <div class="achip"><div class="achip-medal gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="achip-text">All India Championship</div><div class="achip-sub">S. Lakshman Rao · 2005</div></div></div>
+      <div class="achip"><div class="achip-medal blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.75"><path d="M7 4h10v7a5 5 0 0 1-10 0V4z"/></svg></div><div><div class="achip-text">National Speed Skating</div><div class="achip-sub">Gold · Open Category</div></div></div>
+      <div class="achip"><div class="achip-medal silver"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="achip-text">AP State Championship</div><div class="achip-sub">Silver · Artistic Skating</div></div></div>
+      <div class="achip"><div class="achip-medal bronze"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="achip-text">District Level Games</div><div class="achip-sub">Bronze · Junior Category</div></div></div>
+      <div class="achip"><div class="achip-medal green"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div><div><div class="achip-text">International Meet</div><div class="achip-sub">Certificate of Excellence</div></div></div>
+      <div class="achip"><div class="achip-medal gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="achip-text">AP State Games</div><div class="achip-sub">Gold · Senior Artistic</div></div></div>
+      <div class="achip"><div class="achip-medal purple"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="achip-text">Junior Nationals</div><div class="achip-sub">Multiple Medals</div></div></div>
+      <div class="achip"><div class="achip-medal blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="achip-text">Vizag City Championship</div><div class="achip-sub">Podium Sweep · 2023</div></div></div>
+      <div class="achip"><div class="achip-medal gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="achip-text">South Zone Championship</div><div class="achip-sub">Gold · Artistic</div></div></div>
+      <!-- duplicate for seamless loop -->
+      <div class="achip"><div class="achip-medal gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="achip-text">All India Championship</div><div class="achip-sub">S. Lakshman Rao · 2005</div></div></div>
+      <div class="achip"><div class="achip-medal blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.75"><path d="M7 4h10v7a5 5 0 0 1-10 0V4z"/></svg></div><div><div class="achip-text">National Speed Skating</div><div class="achip-sub">Gold · Open Category</div></div></div>
+      <div class="achip"><div class="achip-medal silver"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="achip-text">AP State Championship</div><div class="achip-sub">Silver · Artistic Skating</div></div></div>
+      <div class="achip"><div class="achip-medal bronze"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="achip-text">District Level Games</div><div class="achip-sub">Bronze · Junior Category</div></div></div>
+      <div class="achip"><div class="achip-medal green"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div><div><div class="achip-text">International Meet</div><div class="achip-sub">Certificate of Excellence</div></div></div>
+      <div class="achip"><div class="achip-medal gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="achip-text">AP State Games</div><div class="achip-sub">Gold · Senior Artistic</div></div></div>
+      <div class="achip"><div class="achip-medal purple"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="achip-text">Junior Nationals</div><div class="achip-sub">Multiple Medals</div></div></div>
+      <div class="achip"><div class="achip-medal blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="achip-text">Vizag City Championship</div><div class="achip-sub">Podium Sweep · 2023</div></div></div>
+      <div class="achip"><div class="achip-medal gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="achip-text">South Zone Championship</div><div class="achip-sub">Gold · Artistic</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="sec">
+  <div class="inner">
+    <div class="test-header reveal">
+      <span class="eyebrow">What Our Community Says</span>
+      <h2 class="sec-h2">Real stories from<br/>real champions.</h2>
+      <p class="sec-body">Words from the athletes and families who have experienced the IARSA difference.</p>
+    </div>
+    <div class="test-grid">
+      <div class="testcard reveal d1">
+        <div class="test-quote-mark">"</div>
+        <div class="test-stars">★★★★★</div>
+        <p class="test-quote">My daughter joined as a complete beginner and within one year she was competing at the State level. Coach Simhadri's patience and method are extraordinary. We couldn't be more grateful.</p>
+        <div class="test-author"><div class="test-av av-purple" style="font-weight:700;color:#fff">PR</div><div><div class="test-name">Priya Rao</div><div class="test-desc">Parent · Beginners</div></div></div>
+      </div>
+      <div class="testcard reveal d2">
+        <div class="test-quote-mark">"</div>
+        <div class="test-stars">★★★★★</div>
+        <p class="test-quote">Training under Coach Srinivas transformed my technique completely. The structured progression and the discipline instilled at IARSA is what earned me a spot at the national qualifiers.</p>
+        <div class="test-author"><div class="test-av av-blue" style="font-weight:700;color:#fff">AR</div><div><div class="test-name">Arjun Reddy</div><div class="test-desc">Senior Artistic · 3 yrs</div></div></div>
+      </div>
+      <div class="testcard reveal d3">
+        <div class="test-quote-mark">"</div>
+        <div class="test-stars">★★★★★</div>
+        <p class="test-quote">Best decision we ever made for our son. IARSA teaches not just skating, but character. Punctuality, sportsmanship, and resilience — values that make him excel beyond the rink too.</p>
+        <div class="test-author"><div class="test-av av-green" style="font-weight:700;color:#fff">VS</div><div><div class="test-name">Venkat Sharma</div><div class="test-desc">Parent · Junior Artistic</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ── FAQ ── */
+.faq-layout{display:grid;grid-template-columns:1fr 1.3fr;gap:60px;align-items:start}
+.faq-contact-block{
+  margin-top:28px;padding:22px 24px;border-radius:16px;
+  background:linear-gradient(135deg,rgba(0,229,255,.08),rgba(123,92,255,.08));
+  border:1px solid var(--line2);
+}
+.faq-contact-block h4{font-size:15px;font-weight:600;color:#fff;margin-bottom:6px}
+.faq-contact-block p{font-size:12.5px;color:var(--dim);margin-bottom:14px}
+.faq-contact-block a{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--cyan);font-weight:600;font-size:14px;
+  padding:10px 16px;border-radius:10px;
+  background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.25);
+  transition:all .25s var(--ease);
+}
+.faq-contact-block a:hover{background:rgba(0,229,255,.15);color:#fff}
+.faq-list{display:flex;flex-direction:column;gap:10px}
+.faq-item{
+  background:rgba(255,255,255,.03);border:1px solid var(--line);
+  border-radius:14px;overflow:hidden;transition:all .3s var(--ease);
+}
+.faq-item.open{border-color:rgba(0,229,255,.35);background:rgba(0,229,255,.04)}
+.faq-q{
+  width:100%;padding:18px 22px;
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+  font-size:14px;font-weight:500;color:#fff;text-align:left;
+  transition:color .25s var(--ease);
+}
+.faq-q:hover{color:var(--cyan)}
+.faq-icon{
+  width:28px;height:28px;border-radius:8px;
+  background:rgba(255,255,255,.06);display:grid;place-items:center;
+  font-size:18px;font-weight:400;color:var(--cyan);
+  transition:all .3s var(--ease);flex-shrink:0;
+}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:linear-gradient(135deg,var(--cyan),var(--violet));color:#05030f}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s var(--ease)}
+.faq-item.open .faq-a{max-height:240px}
+.faq-a-inner{padding:0 22px 18px;font-size:13px;color:var(--dim);line-height:1.7}
+
+/* ── ENROL CTA ── */
+#enrol-cta{
+  padding:80px 5%;margin:40px 5%;
+  border-radius:32px;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(0,229,255,.25), transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(255,61,154,.2), transparent 50%),
+    linear-gradient(135deg,rgba(12,9,28,.9),rgba(20,10,40,.9));
+  border:1px solid var(--line2);
+  position:relative;overflow:hidden;
+}
+#enrol-cta::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);
+  background-size:32px 32px;
+  mask-image:radial-gradient(ellipse at center,black,transparent 70%);
+  -webkit-mask-image:radial-gradient(ellipse at center,black,transparent 70%);
+}
+.cta-inner{max-width:980px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center;position:relative;z-index:2}
+.cta-text h2{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(1.8rem,3.8vw,2.8rem);
+  font-weight:600;letter-spacing:-.025em;color:#fff;line-height:1.1;margin-bottom:14px;
+}
+.cta-text p{font-size:14.5px;color:var(--dim);line-height:1.7;max-width:540px}
+.cta-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.cta-btn-white{
+  padding:15px 32px;border-radius:999px;
+  background:#fff;color:#05030f;font-size:14px;font-weight:600;
+  transition:all .3s var(--ease);
+  box-shadow:0 8px 28px rgba(255,255,255,.15);
+}
+.cta-btn-white:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(255,255,255,.28)}
+.cta-btn-outline{
+  padding:15px 28px;border-radius:999px;
+  background:transparent;color:#fff;font-size:14px;font-weight:500;
+  border:1px solid rgba(255,255,255,.25);
+  transition:all .25s var(--ease);
+}
+.cta-btn-outline:hover{background:rgba(255,255,255,.08);border-color:#fff}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start}
+.cinfo-head{margin-bottom:30px}
+.cinfo-head h2{margin:12px 0 12px}
+.cinfo-head p{font-size:14px;color:var(--dim);line-height:1.6;max-width:420px}
+.citem{
+  display:flex;gap:16px;padding:18px 20px;margin-bottom:10px;
+  background:rgba(255,255,255,.025);border:1px solid var(--line);
+  border-radius:14px;
+  transition:all .25s var(--ease);
+}
+.citem:hover{background:rgba(0,229,255,.04);border-color:rgba(0,229,255,.3)}
+.cic{
+  width:42px;height:42px;border-radius:11px;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(0,229,255,.15),rgba(123,92,255,.15));
+  border:1px solid var(--line2);
+  display:grid;place-items:center;color:var(--cyan);
+}
+.citem-body h5{font-size:13.5px;font-weight:600;color:#fff;margin-bottom:4px}
+.citem-body p,.citem-body a{font-size:12.5px;color:var(--dim);line-height:1.6}
+.citem-body a{color:var(--cyan);transition:color .25s}.citem-body a:hover{color:#fff}
+.social-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.social-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 16px;border-radius:999px;
+  background:rgba(255,255,255,.04);border:1px solid var(--line2);
+  font-size:12px;font-weight:500;color:#fff;
+  transition:all .25s var(--ease);
+}
+.social-pill:hover{background:linear-gradient(135deg,rgba(0,229,255,.15),rgba(123,92,255,.15));border-color:var(--cyan);color:var(--cyan)}
+
+.cform{
+  padding:32px;border-radius:22px;
+  background:rgba(12,9,28,.6);border:1px solid var(--line2);
+  backdrop-filter:blur(14px);
+  position:relative;overflow:hidden;
+}
+.cform::before{
+  content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;
+  background:radial-gradient(circle,rgba(0,229,255,.15),transparent 60%);
+  pointer-events:none;
+}
+.cform h3{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:600;color:#fff;letter-spacing:-.02em;margin-bottom:22px;position:relative;z-index:2}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.ff{display:flex;flex-direction:column;gap:7px;position:relative;z-index:2}
+.ff label{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.1em}
+.ff input,.ff select,.ff textarea{
+  padding:13px 16px;border-radius:12px;
+  background:rgba(255,255,255,.04);border:1px solid var(--line2);
+  color:#fff;font-size:13.5px;
+  transition:all .25s var(--ease);
+  outline:none;
+}
+.ff select{cursor:pointer}
+.ff select option{background:#0a0620;color:#fff}
+.ff textarea{min-height:110px;resize:vertical;font-family:inherit}
+.ff input:focus,.ff select:focus,.ff textarea:focus{
+  border-color:var(--cyan);background:rgba(0,229,255,.05);
+  box-shadow:0 0 0 4px rgba(0,229,255,.08);
+}
+.ff input::placeholder,.ff textarea::placeholder{color:var(--mute)}
+.cform-submit{
+  width:100%;padding:15px;border-radius:12px;margin-top:8px;
+  font-size:14px;font-weight:600;color:#05030f;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));
+  box-shadow:0 10px 30px rgba(0,229,255,.3);
+  transition:all .3s var(--ease);
+  position:relative;z-index:2;
+}
+.cform-submit:hover{transform:translateY(-3px);box-shadow:0 16px 44px rgba(0,229,255,.5)}
+
+/* ── FOOTER ── */
+footer{
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.4));
+  border-top:1px solid var(--line);
+  padding:70px 5% 40px;margin-top:60px;
+}
+.footer-grid{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:50px}
+.fbrand p{font-size:12.5px;color:var(--dim);line-height:1.7;margin:14px 0 18px;max-width:300px}
+.fsocial{display:flex;gap:10px}
+.fsocial a{
+  width:36px;height:36px;border-radius:10px;
+  background:rgba(255,255,255,.04);border:1px solid var(--line);
+  display:grid;place-items:center;color:var(--dim);
+  transition:all .25s var(--ease);
+}
+.fsocial a:hover{background:linear-gradient(135deg,var(--cyan),var(--violet));color:#05030f;border-color:transparent;transform:translateY(-2px)}
+.fcol h5{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);text-transform:uppercase;letter-spacing:.16em;margin-bottom:18px}
+.flinks{list-style:none;display:flex;flex-direction:column;gap:10px}
+.flinks a{font-size:13px;color:var(--dim);transition:color .25s}.flinks a:hover{color:#fff}
+.fcontact p{font-size:12.5px;color:var(--dim);line-height:1.9}
+.fcontact a{color:var(--cyan);transition:color .25s}.fcontact a:hover{color:#fff}
+.footer-divider{height:1px;background:var(--line);margin:48px auto 20px;max-width:1240px}
+.footer-bottom{max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.fcopy{font-size:11.5px;color:var(--mute);letter-spacing:.02em}
+
+@media (max-width:900px){
+  .faq-layout,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .cta-inner{grid-template-columns:1fr;text-align:center}
+  .cta-actions{justify-content:center}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:30px}
+  .form-row{grid-template-columns:1fr}
+}
+@media (max-width:600px){.footer-grid{grid-template-columns:1fr}}
+</style>
+
+<!-- FAQ -->
+<section id="faq" class="sec">
+  <div class="inner">
+    <div class="faq-layout">
+      <div class="faq-left reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="sec-h2">Common questions,<br/>clear answers.</h2>
+        <p class="sec-body">Everything you need to know before your first session at IARSA.</p>
+        <div class="faq-contact-block">
+          <h4>Still have questions?</h4>
+          <p>Call us or drop a message — we reply fast.</p>
+          <a href="tel:+919959646165"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> +91 99596 46165</a>
+        </div>
+      </div>
+      <div class="faq-list reveal d1">
+        <div class="faq-item"><button class="faq-q">What age groups can join IARSA? <span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">We welcome students from age 5 and above. Our Beginners class is perfect for young children just discovering skating. There's no upper age limit — adults are welcome at all levels!</div></div></div>
+        <div class="faq-item"><button class="faq-q">Do I need to bring my own skates? <span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">For your first session, we recommend coming without skates so coaches can assess the right type and size for you. We can guide you on the best skates to purchase for your level and discipline.</div></div></div>
+        <div class="faq-item"><button class="faq-q">Where exactly is the skating rink located? <span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Our rink is at Shivaji Park, MVP Colony, Visakhapatnam, Andhra Pradesh. It is easily accessible by public and private transport. Contact us for precise directions to the rink entrance.</div></div></div>
+        <div class="faq-item"><button class="faq-q">How do I move from Beginners to Juniors Artistic? <span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Coaches monitor each student's progress continuously. When a student demonstrates stable balance, basic strides, and stopping control, our head coach will recommend progression. There's no fixed timeline — every student progresses at their own pace.</div></div></div>
+        <div class="faq-item"><button class="faq-q">Can IARSA train students for national competitions? <span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Absolutely. Our Senior Artistic program is specifically designed for competition-ready athletes. Our founder S. Lakshman Rao is himself a national champion and coaches students targeting district, state, and national competitions including those affiliated with the All India Roller Skating Federation.</div></div></div>
+        <div class="faq-item"><button class="faq-q">What are the session timings and holidays? <span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Beginners train Tuesday–Sunday (Mon &amp; Thu are holidays) at 5:00–6:30 AM and PM. Juniors Artistic train Monday–Friday 4:00–5:30 PM, with extended Sat/Sun morning sessions. Senior Artistic trains Monday–Friday 6:00–8:30 PM, with extended weekend sessions.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section id="enrol-cta">
+  <div class="cta-inner">
+    <div class="cta-text reveal">
+      <h2>Ready to begin your skating journey?</h2>
+      <p>Join hundreds of athletes who found their champion at IARSA. Enrolments are open now for the 2025–26 season. Morning and evening batches available for all levels.</p>
+    </div>
+    <div class="cta-actions reveal d2">
+      <a href="#contact" class="cta-btn-white">Enrol Now →</a>
+      <a href="tel:+919959646165" class="cta-btn-outline">Call Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec">
+  <div class="inner">
+    <div class="contact-grid">
+      <div>
+        <div class="cinfo-head reveal">
+          <span class="eyebrow">Get In Touch</span>
+          <h2 class="sec-h2">Let's talk.</h2>
+          <p>Questions about enrolment, batch timings, or a visit to our rink? We're just a call or message away.</p>
+        </div>
+        <div class="reveal d1">
+          <div class="citem">
+            <div class="cic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div>
+            <div class="citem-body"><h5>Address</h5><p>Shivaji Park, MVP Colony<br/>Visakhapatnam, Andhra Pradesh</p></div>
+          </div>
+          <div class="citem">
+            <div class="cic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+            <div class="citem-body"><h5>Phone</h5><p>Simhadri: <a href="tel:+919959646165">+91 99596 46165</a><br/>Srinivas: <a href="tel:+919704994994">+91 97049 94994</a></p></div>
+          </div>
+          <div class="citem">
+            <div class="cic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+            <div class="citem-body"><h5>Email</h5><p><a href="mailto:iarsaskatingacademy@gmail.com">iarsaskatingacademy@gmail.com</a></p></div>
+          </div>
+          <div class="citem">
+            <div class="cic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg></div>
+            <div class="citem-body"><h5>Training Days</h5><p>Tuesday through Sunday<br/>(Monday &amp; Thursday: Holiday)</p></div>
+          </div>
+          <div class="social-row">
+            <a href="https://www.facebook.com/proskaters.shivajipark" class="social-pill" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> Facebook</a>
+            <a href="https://www.youtube.com/channel/UCoKNzWrww4202TyFZu5ZarA" class="social-pill" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> YouTube</a>
+            <a href="http://indiaskating.com" class="social-pill" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg> Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="cform reveal d2">
+        <h3>Send us a message</h3>
+        <div class="form-row">
+          <div class="ff"><label>// Your Name</label><input type="text" placeholder="Full name" autocomplete="name"/></div>
+          <div class="ff"><label>// Your Phone</label><input type="tel" placeholder="+91 XXXXX XXXXX" autocomplete="tel"/></div>
+        </div>
+        <div class="ff" style="margin-bottom:14px"><label>// Email Address</label><input type="email" placeholder="you@example.com" autocomplete="email"/></div>
+        <div class="ff" style="margin-bottom:14px"><label>// Interested In</label>
+          <select>
+            <option value="">Select a program…</option>
+            <option>Beginners Class</option>
+            <option>Juniors Artistic</option>
+            <option>Senior Artistic</option>
+            <option>General Enquiry</option>
+          </select>
+        </div>
+        <div class="ff" style="margin-bottom:14px"><label>// Your Message</label><textarea placeholder="Tell us about yourself or ask any question…"></textarea></div>
+        <button class="cform-submit" id="sendBtn">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="fbrand">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px">
+        <div class="logomark-wrap" style="width:38px;height:38px">
+          <svg viewBox="0 0 44 44" fill="none"><ellipse cx="22" cy="16.5" rx="3.8" ry="4.2" fill="white" opacity=".95"/><path d="M15.5 19.5 Q18 17.5 22 18.5 Q26 17.5 28.5 19.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M22 20.5 L21 26" stroke="white" stroke-width="2.2" stroke-linecap="round"/><path d="M21 26 L17.5 32" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M21 26 L25.5 30" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:#fff;letter-spacing:.02em">IARSA</div>
+          <div style="font-size:10px;color:var(--mute);margin-top:2px;letter-spacing:.06em;text-transform:uppercase">Est. 2005</div>
+        </div>
+      </div>
+      <p>Nurturing India's skating champions at Shivaji Park, MVP Colony, Visakhapatnam, Andhra Pradesh since 2005.</p>
+      <div class="fsocial">
+        <a href="https://www.facebook.com/proskaters.shivajipark" target="_blank" title="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.youtube.com/channel/UCoKNzWrww4202TyFZu5ZarA" target="_blank" title="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></a>
+        <a href="http://indiaskating.com" target="_blank" title="Website"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg></a>
+      </div>
+    </div>
+    <div class="fcol">
+      <h5>// Academy</h5>
+      <ul class="flinks"><li><a href="#hero">Home</a></li><li><a href="#about">About Us</a></li><li><a href="#team">Our Team</a></li><li><a href="#values">Why IARSA</a></li><li><a href="#faq">FAQ</a></li></ul>
+    </div>
+    <div class="fcol">
+      <h5>// Training</h5>
+      <ul class="flinks"><li><a href="#programs">Beginners</a></li><li><a href="#programs">Juniors Artistic</a></li><li><a href="#programs">Senior Artistic</a></li><li><a href="#stats">Achievements</a></li><li><a href="https://www.youtube.com/channel/UCoKNzWrww4202TyFZu5ZarA" target="_blank">Videos</a></li></ul>
+    </div>
+    <div class="fcol fcontact">
+      <h5>// Contact</h5>
+      <p>
+        <a href="tel:+919959646165">+91 99596 46165</a><br/>
+        <a href="tel:+919704994994">+91 97049 94994</a><br/><br/>
+        <a href="mailto:iarsaskatingacademy@gmail.com">iarsaskatingacademy@gmail.com</a><br/><br/>
+        Shivaji Park, MVP Colony,<br/>Visakhapatnam, A.P
+      </p>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+    <p class="fcopy">© 2005–2026 Indian Amateur Roller Skating Academy. All rights reserved.</p>
+    <p class="fcopy">Visakhapatnam · Andhra Pradesh · India</p>
+  </div>
+</footer>
+
+<!-- Three.js for WebGL hero -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  'use strict';
+
+  /* ── SCROLL REVEAL ── */
+  const revealObs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        revealObs.unobserve(e.target);
+      }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+  /* ── COUNT UP ── */
+  const countObs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el=e.target;
+        const target=parseInt(el.dataset.count,10);
+        const suffix=el.dataset.suffix||'';
+        const dur=1800;const start=performance.now();
+        function step(t){
+          const p=Math.min((t-start)/dur,1);
+          const eased=1-Math.pow(1-p,3);
+          el.textContent=Math.floor(target*eased)+suffix;
+          if(p<1)requestAnimationFrame(step);
+          else el.textContent=target+suffix;
+        }
+        requestAnimationFrame(step);
+        countObs.unobserve(el);
+      }
+    });
+  },{threshold:.4});
+  document.querySelectorAll('[data-count]').forEach(el=>countObs.observe(el));
+
+  /* ── NAV shrink on scroll ── */
+  const nav=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>{
+    nav.classList.toggle('shrunk',window.scrollY>40);
+  },{passive:true});
+
+  /* ── NAV active link ── */
+  const sections=document.querySelectorAll('section[id]');
+  const navLinks=document.querySelectorAll('.nav-links a');
+  const secObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const id='#'+e.target.id;
+        navLinks.forEach(l=>l.classList.toggle('active',l.getAttribute('href')===id));
+      }
+    });
+  },{rootMargin:'-40% 0px -55% 0px'});
+  sections.forEach(s=>secObs.observe(s));
+
+  /* ── Mobile menu ── */
+  const hamBtn=document.getElementById('hamBtn');
+  const mobileMenu=document.getElementById('mobileMenu');
+  hamBtn.addEventListener('click',()=>mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.remove('open')));
+
+  /* ── FAQ accordion ── */
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    const btn=item.querySelector('.faq-q');
+    btn.addEventListener('click',()=>{
+      const open=item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!open)item.classList.add('open');
+    });
+  });
+
+  /* ── Contact form fake submit ── */
+  const sendBtn=document.getElementById('sendBtn');
+  if(sendBtn){
+    sendBtn.addEventListener('click',(ev)=>{
+      ev.preventDefault();
+      const orig=sendBtn.textContent;
+      sendBtn.textContent='✓ Message Sent — We\'ll be in touch';
+      sendBtn.style.background='linear-gradient(135deg,#3cf0b8,#00e5ff)';
+      setTimeout(()=>{sendBtn.textContent=orig;sendBtn.style.background='';},3400);
+    });
+  }
+
+  /* ================================================
+     THREE.JS HERO SCENE
+     Particle ring + rotating torus + orbiting motes
+     ================================================ */
+  const canvas=document.getElementById('heroCanvas');
+  if(canvas && typeof THREE!=='undefined'){
+    const container=canvas.parentElement;
+    const w=container.clientWidth, h=container.clientHeight;
+
+    const scene=new THREE.Scene();
+    scene.fog=new THREE.FogExp2(0x05030f,0.06);
+
+    const camera=new THREE.PerspectiveCamera(55,w/h,0.1,100);
+    camera.position.set(0,0,8);
+
+    const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+    renderer.setSize(w,h,false);
+    renderer.setClearColor(0x000000,0);
+
+    /* ── Torus 1: glowing wireframe ── */
+    const torusGeo=new THREE.TorusGeometry(2.6,0.06,12,120);
+    const torusMat=new THREE.MeshBasicMaterial({color:0x00e5ff,transparent:true,opacity:0.85,wireframe:false});
+    const torus=new THREE.Mesh(torusGeo,torusMat);
+    torus.rotation.x=Math.PI/2.4;
+    scene.add(torus);
+
+    /* ── Torus 2 (violet) ── */
+    const torus2=new THREE.Mesh(new THREE.TorusGeometry(3.2,0.03,8,120),new THREE.MeshBasicMaterial({color:0x7b5cff,transparent:true,opacity:0.6}));
+    torus2.rotation.x=Math.PI/2.4;
+    torus2.rotation.y=Math.PI/4;
+    scene.add(torus2);
+
+    /* ── Torus 3 (magenta, bigger, tilted) ── */
+    const torus3=new THREE.Mesh(new THREE.TorusGeometry(4.0,0.015,6,120),new THREE.MeshBasicMaterial({color:0xff3d9a,transparent:true,opacity:0.45}));
+    torus3.rotation.x=Math.PI/3;
+    torus3.rotation.z=Math.PI/6;
+    scene.add(torus3);
+
+    /* ── Particle cloud ── */
+    const particleCount=900;
+    const positions=new Float32Array(particleCount*3);
+    const colors=new Float32Array(particleCount*3);
+    const palette=[
+      new THREE.Color(0x00e5ff),
+      new THREE.Color(0x7b5cff),
+      new THREE.Color(0xff3d9a),
+      new THREE.Color(0x4f7cff),
+      new THREE.Color(0x3cf0b8),
+    ];
+    for(let i=0;i<particleCount;i++){
+      const r=2+Math.random()*4;
+      const theta=Math.random()*Math.PI*2;
+      const phi=Math.acos(2*Math.random()-1);
+      positions[i*3]=r*Math.sin(phi)*Math.cos(theta);
+      positions[i*3+1]=r*Math.sin(phi)*Math.sin(theta)*0.6;
+      positions[i*3+2]=r*Math.cos(phi);
+      const col=palette[Math.floor(Math.random()*palette.length)];
+      colors[i*3]=col.r;colors[i*3+1]=col.g;colors[i*3+2]=col.b;
+    }
+    const pGeo=new THREE.BufferGeometry();
+    pGeo.setAttribute('position',new THREE.BufferAttribute(positions,3));
+    pGeo.setAttribute('color',new THREE.BufferAttribute(colors,3));
+    const pMat=new THREE.PointsMaterial({size:0.04,vertexColors:true,transparent:true,opacity:0.85,blending:THREE.AdditiveBlending,depthWrite:false});
+    const points=new THREE.Points(pGeo,pMat);
+    scene.add(points);
+
+    /* ── Orbiting core sphere ── */
+    const coreGeo=new THREE.SphereGeometry(0.55,32,32);
+    const coreMat=new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:0.92});
+    const core=new THREE.Mesh(coreGeo,coreMat);
+    scene.add(core);
+    const coreGlow=new THREE.Mesh(new THREE.SphereGeometry(0.75,32,32),new THREE.MeshBasicMaterial({color:0x00e5ff,transparent:true,opacity:0.22,blending:THREE.AdditiveBlending}));
+    scene.add(coreGlow);
+
+    /* ── 4 orbiting "skater" motes along torus plane ── */
+    const motes=[];
+    for(let i=0;i<5;i++){
+      const g=new THREE.SphereGeometry(0.09,14,14);
+      const m=new THREE.MeshBasicMaterial({color:palette[i%palette.length],blending:THREE.AdditiveBlending,transparent:true,opacity:0.95});
+      const mesh=new THREE.Mesh(g,m);
+      scene.add(mesh);
+      motes.push({mesh,speed:0.5+Math.random()*0.4,phase:Math.random()*Math.PI*2,radius:2.6});
+    }
+
+    /* ── Grid floor ── */
+    const grid=new THREE.GridHelper(14,22,0x4f7cff,0x7b5cff);
+    grid.position.y=-2.4;
+    grid.material.transparent=true;
+    grid.material.opacity=0.22;
+    scene.add(grid);
+
+    /* ── Mouse parallax ── */
+    let mx=0,my=0,tmx=0,tmy=0;
+    container.addEventListener('mousemove',e=>{
+      const r=container.getBoundingClientRect();
+      tmx=((e.clientX-r.left)/r.width-0.5)*2;
+      tmy=((e.clientY-r.top)/r.height-0.5)*2;
+    });
+    container.addEventListener('mouseleave',()=>{tmx=0;tmy=0;});
+
+    /* ── Animate ── */
+    const clock=new THREE.Clock();
+    function tick(){
+      const t=clock.getElapsedTime();
+      torus.rotation.z=t*0.25;
+      torus.rotation.x=Math.PI/2.4+Math.sin(t*0.3)*0.15;
+      torus2.rotation.z=-t*0.18;
+      torus2.rotation.x=Math.PI/2.4+Math.cos(t*0.25)*0.12;
+      torus3.rotation.z=t*0.12;
+      points.rotation.y=t*0.06;
+      points.rotation.x=Math.sin(t*0.2)*0.08;
+
+      const pulse=1+Math.sin(t*1.8)*0.08;
+      core.scale.setScalar(pulse);
+      coreGlow.scale.setScalar(pulse*1.25);
+      coreGlow.material.opacity=0.18+Math.sin(t*2)*0.08;
+
+      motes.forEach((o,i)=>{
+        const ang=t*o.speed+o.phase;
+        o.mesh.position.set(Math.cos(ang)*o.radius,Math.sin(ang*0.6)*0.6,Math.sin(ang)*o.radius);
+      });
+
+      mx+=(tmx-mx)*0.05;
+      my+=(tmy-my)*0.05;
+      camera.position.x=mx*0.6;
+      camera.position.y=-my*0.4;
+      camera.lookAt(0,0,0);
+
+      renderer.render(scene,camera);
+      requestAnimationFrame(tick);
+    }
+    tick();
+
+    /* ── Resize ── */
+    window.addEventListener('resize',()=>{
+      const nw=container.clientWidth, nh=container.clientHeight;
+      camera.aspect=nw/nh;
+      camera.updateProjectionMatrix();
+      renderer.setSize(nw,nh,false);
+    });
+  }
+
+})();
+</script>
+</body>
+</html>
